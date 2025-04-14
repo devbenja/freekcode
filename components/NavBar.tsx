@@ -52,7 +52,7 @@ const Navbar = () => {
             <div className="flex items-center space-x-4">
               <ThemeToggle />
               <LanguageSwitcher />
-              <Button className="bg-sky-900 rounded-xl tracking-wide cursor-pointer">Contactar</Button>
+              <Button className="bg-[#2220DB] dark:bg-[#FFFFFF] rounded-xl tracking-wide cursor-pointer">Contactar</Button>
             </div>
           </nav>
 

@@ -29,7 +29,7 @@ export default {
                 background: 'hsl(var(--background))',
                 foreground: 'hsl(var(--foreground))',
                 freek: {
-                    yellow: '#FFC72C',
+                    blue: '#2220DB',
                     black: '#000000',
                     white: '#FFFFFF',
                     gray: '#F0F0F0',
