@@ -5,6 +5,13 @@ import type React from "react"
 import { useEffect, useRef, useState } from "react"
 import { ArrowRight, Sparkles } from "lucide-react"
 
+import { Orbitron } from 'next/font/google'
+
+const orbitron = Orbitron({
+  subsets: ['latin'],
+  weight: ['600'],
+})
+
 export const Hero = () => {
 
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -15,8 +22,7 @@ export const Hero = () => {
   const [isTyping, setIsTyping] = useState(true)
 
   const inspiringPhrases = [
-    "Transformamos ideas en soluciones",
-    "Innovación que impulsa tu negocio",
+    "Impulsamos tu negocio",
     "Tecnología para tu crecimiento",
     "Resultados extraordinarios",
   ]
@@ -193,26 +199,26 @@ export const Hero = () => {
       <canvas ref={canvasRef} className="absolute inset-0 z-1 pointer-events-none" />
 
       <div className="px-4 sm:px-6 lg:px-8 relative z-10 py-20 md:py-0 w-full">
-        <div className="max-w-5xl mx-auto text-center">
+        <div className="max-w-6xl mx-auto text-center">
           {/* Hero content */}
-          <div className="inline-flex items-center px-3 py-1 mb-8 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full">
-              <Sparkles className="mr-2 h-4 w-4" />
-              Desarrollo de Software Innovador
-            </div>
+          <div className="inline-flex items-center px-3 py-1 mt-10 mb-10 md:mb-12 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full">
+            <Sparkles className="mr-2 h-4 w-4" />
+            Desarrollo de Software Innovador
+          </div>
           <div className="animate-fade-in-up">
-            
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-display font-bold mb-8 tracking-wide">
+
+            <h1 className={`${orbitron.className} text-4xl md:text-5xl lg:text-7xl font-display font-extrabold mb-8 tracking-wide`}>
               <span>
                 <span className="relative bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 animate-gradient">
                   Impulsamos
-                </span> tu negocio con </span> 
-                <span className="text-gradient">
-                  software a medida
-                </span>
+                </span> tu Negocio con Software </span>
+              <span className="relative bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 animate-gradient">
+                a la Medida
+              </span>
             </h1>
 
             {/* Efecto de Escritura */}
-            <div className="h-12 mb-6">
+            <div className="h-12 mb-4">
               <p className="text-lg md:text-xl text-gray-800 dark:text-gray-400 font-mono flex justify-center items-center">
                 <span className="inline-block w-2 h-5 bg-blue-600 animate-blink mr-1"></span>
                 {displayText}
@@ -224,17 +230,17 @@ export const Hero = () => {
               experiencia de tus usuarios.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-5 justify-center">
               <a
                 href="#contacto"
-                className="p-4 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl shadow-xs hover:bg-primary/90 cursor-pointer"
+                className="p-3.5 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl shadow-xs hover:bg-primary/90 cursor-pointer"
               >
                 <span>Agenda una consulta gratuita</span>
                 <ArrowRight className="ml-2 h-5 w-5" />
               </a>
               <a
                 href="#servicios"
-                className="p-4 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl shadow-xs hover:bg-primary/90 cursor-pointer"
+                className="p-3.5 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl shadow-xs hover:bg-primary/90 cursor-pointer"
               >
                 Conoce nuestros servicios
                 <ArrowRight className="ml-2 h-5 w-5" />
