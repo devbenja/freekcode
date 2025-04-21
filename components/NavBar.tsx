@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Logo } from './Logo';
 import { ThemeToggle} from './ThemeToggle';
@@ -11,6 +11,8 @@ const Navbar = () => {
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [theme, setTheme] = useState<'light' | 'dark' | null>(null);
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,20 +54,20 @@ const Navbar = () => {
             <div className="flex items-center space-x-4">
               <ThemeToggle />
               <LanguageSwitcher />
-              <Button className="bg-[#2220DB] dark:bg-[#FFFFFF] rounded-xl tracking-wide cursor-pointer">Contactar</Button>
+              <Button variant={"default"}>Contactar</Button>
             </div>
           </nav>
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center space-x-4">
-            <ThemeToggle />
+            <ThemeToggle/>
             <LanguageSwitcher />
-            <button 
+            <a 
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
-              className="text-gray-700 dark:text-gray-300 hover:text-freek-yellow focus:outline-none"
+              className="focus:outline-none text-blue-700"
             >
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -105,7 +107,7 @@ const Navbar = () => {
             <div className="py-4">
               <a 
                 href="#contacto" 
-                className="block w-full text-center px-3 py-3 font-medium rounded-md bg-freek-yellow text-freek-black hover:bg-freek-darkyellow transition-colors tracking-wide"
+                className="block w-full text-center px-3 py-3 font-medium rounded-md bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:bg-white transition-colors tracking-wide"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Contactar
