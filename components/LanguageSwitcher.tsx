@@ -2,23 +2,13 @@
 
 import React, { useState } from 'react';
 import { Globe } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
+import { Button } from './ui/button';
 
-type Language = 'es' | 'en';
-
-interface LanguageSwitcherProps {
-  initialLanguage?: Language;
-}
-
-export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ initialLanguage = 'es' }) => {
+export const LanguageSwitcher = () => {
   
-  const [language, setLanguage] = useState<Language>(initialLanguage);
-  const [showDropdown, setShowDropdown] = useState(false);
-
-  const toggleLanguage = (newLanguage: Language) => {
-    setLanguage(newLanguage);
-    localStorage.setItem('language', newLanguage);
-    setShowDropdown(false);
-  };
+  const { currentLanguage, changeLanguage } = useLanguage();
+  const [ showDropdown, setShowDropdown] = useState(false);
 
   return (
     <div className="relative">
@@ -28,34 +18,36 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ initialLangu
         aria-label="Change language"
       >
         <Globe size={20} className="text-gray-700 dark:text-gray-300" />
-        <span className="ml-1 text-sm font-medium uppercase">{language}</span>
+        <span className="ml-1 text-sm font-medium uppercase">{currentLanguage}</span>
       </button>
 
       {showDropdown && (
         <div className="absolute right-0 mt-2 w-24 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 z-50">
           <div className="py-1" role="menu" aria-orientation="vertical">
-            <button
-              onClick={() => toggleLanguage('es')}
+            <Button
+              onClick={() => changeLanguage("es")}
               className={`${
-                language === 'es' ? 'bg-gray-100 dark:bg-gray-700' : ''
+                currentLanguage === 'es' ? 'bg-gray-100 dark:bg-gray-700' : ''
               } block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700`}
               role="menuitem"
             >
               Español
-            </button>
-            <button
-              onClick={() => toggleLanguage('en')}
+            </Button>
+            <Button
+              onClick={() => changeLanguage("en")}
               className={`${
-                language === 'en' ? 'bg-gray-100 dark:bg-gray-700' : ''
+                currentLanguage === 'en' ? 'bg-gray-100 dark:bg-gray-700' : ''
               } block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700`}
               role="menuitem"
             >
               English
-            </button>
+            </Button>
           </div>
         </div>
       )}
     </div>
   );
 };
+
+
 

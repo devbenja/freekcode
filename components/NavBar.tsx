@@ -7,8 +7,11 @@ import { ThemeToggle} from './ThemeToggle';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { Button } from './ui/button';
 
+import { useLanguage } from '@/context/LanguageContext';
+
 const Navbar = () => {
 
+  const { currentLanguage, changeLanguage } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [theme, setTheme] = useState<'light' | 'dark' | null>(null);

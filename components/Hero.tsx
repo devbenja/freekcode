@@ -4,8 +4,9 @@ import type React from "react"
 
 import { useEffect, useRef, useState } from "react"
 import { ArrowRight, Sparkles } from "lucide-react"
-
 import { Orbitron } from 'next/font/google'
+import { useLanguage } from "@/context/LanguageContext"
+import { Button } from "./ui/button"
 
 const orbitron = Orbitron({
   subsets: ['latin'],
@@ -14,18 +15,36 @@ const orbitron = Orbitron({
 
 export const Hero = () => {
 
+  
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0)
   const [displayText, setDisplayText] = useState("")
   const [isTyping, setIsTyping] = useState(true)
+  const { currentLanguage } = useLanguage();
 
   const inspiringPhrases = [
     "Impulsamos tu negocio",
     "Tecnología para tu crecimiento",
     "Resultados extraordinarios",
   ]
+
+  const texts = {
+    es: {
+      title1: "Desarrollo de Software Innovador",
+      title2_1: "Impulsamos",
+      title2_2: "tu Negocio con Software",
+      title2_3: "a la Medida"
+      
+    },
+    en: {
+      title1: "Innovative Software Development",
+      title2_1: "We boost",
+      title2_2: "your Business with",
+      title2_3: "Custom Sofware"
+    }
+  }
 
   // Efecto de typing para frases inspiradoras
   useEffect(() => {
@@ -203,17 +222,17 @@ export const Hero = () => {
           {/* Hero content */}
           <div className="inline-flex items-center px-3 py-1 mt-10 mb-10 md:mb-12 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full">
             <Sparkles className="mr-2 h-4 w-4" />
-            Desarrollo de Software Innovador
+            {texts[currentLanguage].title1}
           </div>
           <div className="animate-fade-in-up">
 
             <h1 className={`${orbitron.className} text-4xl md:text-5xl lg:text-7xl font-display font-extrabold mb-8 tracking-wide`}>
               <span>
                 <span className="relative bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 animate-gradient">
-                  Impulsamos
-                </span> tu Negocio con Software </span>
+                  {texts[currentLanguage].title2_1}
+                </span> {texts[currentLanguage].title2_2} </span>
               <span className="relative bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 animate-gradient">
-                a la Medida
+                {texts[currentLanguage].title2_3}
               </span>
             </h1>
 
@@ -226,8 +245,8 @@ export const Hero = () => {
             </div>
 
             <p className="text-lg md:text-xl text-gray-800 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
-              Transformamos ideas en soluciones tecnológicas que impulsan el crecimiento de tu empresa y mejoran la
-              experiencia de tus usuarios.
+              
+              
             </p>
 
             <div className="flex flex-col sm:flex-row gap-5 justify-center">
