@@ -6,15 +6,14 @@ import { Logo } from './Logo';
 import { ThemeToggle} from './ThemeToggle';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { Button } from './ui/button';
-
 import { useLanguage } from '@/context/LanguageContext';
 
 const Navbar = () => {
 
-  const { currentLanguage, changeLanguage } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [theme, setTheme] = useState<'light' | 'dark' | null>(null);
+  const { currentLanguage } = useLanguage();
 
 
   useEffect(() => {
@@ -30,6 +29,24 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // JSON textos en inglés y español
+  const texts = {
+    es: {
+      services: "Servicios",
+      portfolio: "Portafolio",
+      testimonials: "Testimonios",
+      technologies: "Tecnologías",
+      b_contact: "Contactar"
+      
+    },
+    en: {
+      services: "Services",
+      portfolio: "Portfolio",
+      testimonials: "Testimonials",
+      technologies: "Technologies",
+      b_contact: "Contact"
+    }
+  }
   return (
     <header 
       className={`fixed w-full top-0 z-50 transition-all duration-300 ${
@@ -50,14 +67,14 @@ const Navbar = () => {
 
           {/* Desktop Menu */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#servicios" className="nav-link font-medium dark:text-gray-300 dark:hover:text-freek-yellow tracking-wide">Servicios</a>
-            <a href="#portfolio" className="nav-link font-medium dark:text-gray-300 dark:hover:text-freek-yellow tracking-wide">Portfolio</a>
-            <a href="#testimonios" className="nav-link font-medium dark:text-gray-300 dark:hover:text-freek-yellow tracking-wide">Testimonios</a>
-            <a href="#tecnologias" className="nav-link font-medium dark:text-gray-300 dark:hover:text-freek-yellow tracking-wide">Tecnologías</a>
+            <a href="#servicios" className="nav-link font-medium dark:text-gray-300 dark:hover:text-freek-yellow tracking-wide">{texts[currentLanguage].services}</a>
+            <a href="#portfolio" className="nav-link font-medium dark:text-gray-300 dark:hover:text-freek-yellow tracking-wide">{texts[currentLanguage].portfolio}</a>
+            <a href="#testimonios" className="nav-link font-medium dark:text-gray-300 dark:hover:text-freek-yellow tracking-wide">{texts[currentLanguage].testimonials}</a>
+            <a href="#tecnologias" className="nav-link font-medium dark:text-gray-300 dark:hover:text-freek-yellow tracking-wide">{texts[currentLanguage].technologies}</a>
             <div className="flex items-center space-x-4">
               <ThemeToggle />
               <LanguageSwitcher />
-              <Button variant={"default"}>Contactar</Button>
+              <Button variant={"default"}>{texts[currentLanguage].b_contact}</Button>
             </div>
           </nav>
 

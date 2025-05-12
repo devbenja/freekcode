@@ -6,7 +6,6 @@ import { useEffect, useRef, useState } from "react"
 import { ArrowRight, Sparkles } from "lucide-react"
 import { Orbitron } from 'next/font/google'
 import { useLanguage } from "@/context/LanguageContext"
-import { Button } from "./ui/button"
 
 const orbitron = Orbitron({
   subsets: ['latin'],
@@ -15,7 +14,6 @@ const orbitron = Orbitron({
 
 export const Hero = () => {
 
-  
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
@@ -24,31 +22,54 @@ export const Hero = () => {
   const [isTyping, setIsTyping] = useState(true)
   const { currentLanguage } = useLanguage();
 
-  const inspiringPhrases = [
+  /*const inspiringPhrases = [
     "Impulsamos tu negocio",
     "Tecnología para tu crecimiento",
     "Resultados extraordinarios",
-  ]
+  ]*/
 
+  // JSON textos en inglés y español
   const texts = {
     es: {
       title1: "Desarrollo de Software Innovador",
+
       title2_1: "Impulsamos",
       title2_2: "tu Negocio con Software",
-      title2_3: "a la Medida"
+      title2_3: "a la Medida",
+
+      b_schedule: "Agenda una consulta gratuita",
+      b_services: "Conoce nuestros servicios",
+
+      inspiringPhrases: [
+            "Impulsamos tu negocio",
+            "Tecnología para tu crecimiento",
+            "Resultados extraordinarios",
+      ]
       
     },
     en: {
       title1: "Innovative Software Development",
+
       title2_1: "We boost",
       title2_2: "your Business with",
-      title2_3: "Custom Sofware"
+      title2_3: "Custom Software",
+
+      b_schedule: "Schedule free consultation",
+      b_services: "Learn about our services",
+
+            inspiringPhrases: [
+            "We boost your business",
+            "Technology for your growth",
+            "Extraordinary results",
+      ]
     }
   }
 
+  const inspiringPhrasesTyping = texts[currentLanguage].inspiringPhrases;
+
   // Efecto de typing para frases inspiradoras
   useEffect(() => {
-    const phrase = inspiringPhrases[currentPhraseIndex]
+    const phrase = inspiringPhrasesTyping[currentPhraseIndex]
     let index = 0
     let typingInterval: NodeJS.Timeout
 
@@ -62,7 +83,7 @@ export const Hero = () => {
           setIsTyping(false)
           setTimeout(() => {
             setIsTyping(true)
-            setCurrentPhraseIndex((prev) => (prev + 1) % inspiringPhrases.length)
+            setCurrentPhraseIndex((prev) => (prev + 1) % inspiringPhrasesTyping.length)
             setDisplayText("")
           }, 2000)
         }
@@ -254,14 +275,14 @@ export const Hero = () => {
                 href="#contacto"
                 className="p-3.5 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl shadow-xs hover:bg-primary/90 cursor-pointer"
               >
-                <span>Agenda una consulta gratuita</span>
+                <span>{texts[currentLanguage].b_schedule}</span>
                 <ArrowRight className="ml-2 h-5 w-5" />
               </a>
               <a
                 href="#servicios"
                 className="p-3.5 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl shadow-xs hover:bg-primary/90 cursor-pointer"
               >
-                Conoce nuestros servicios
+                {texts[currentLanguage].b_services}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </a>
             </div>

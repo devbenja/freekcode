@@ -1,9 +1,93 @@
 'use client';
 import { FiCode, FiCpu, FiSmartphone, FiSearch, FiTool, FiLink } from 'react-icons/fi';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/context/LanguageContext';
 
 const ServicesSection = () => {
-  const services = [
+
+  const { currentLanguage } = useLanguage();
+
+  const texts = {
+    es: {
+      title: "Nuestros Servicios",
+      sub_title: "Soluciones tecnológicas diseñadas para impulsar tu presencia en línea y hacer crecer tu negocio.",
+
+      services: [
+        {
+          title: "Desarrollo Web a Medida",
+          description: "Creación de sitios web personalizados adaptados a las necesidades específicas de tu negocio.",
+          icon: <FiCode className="text-3xl" />
+        },
+        {
+          title: "Aplicaciones React/Next.js",
+          description: "Desarrollo de aplicaciones modernas y rápidas con las últimas tecnologías del ecosistema JavaScript.",
+          icon: <FiCpu className="text-3xl" />
+        },
+        {
+          title: "Diseño Responsivo",
+          description: "Garantizamos que tu web se vea perfecta en todos los dispositivos, desde móviles hasta desktop.",
+          icon: <FiSmartphone className="text-3xl" />
+        },
+        {
+          title: "Optimización SEO",
+          description: "Mejoramos la visibilidad de tu sitio en los motores de búsqueda para atraer más clientes.",
+          icon: <FiSearch className="text-3xl" />
+        },
+        {
+          title: "Mantenimiento Web",
+          description: "Servicios continuos para mantener tu sitio actualizado, seguro y funcionando sin problemas.",
+          icon: <FiTool className="text-3xl" />
+        },
+        {
+          title: "Integración de APIs",
+          description: "Conectamos tu sitio web con otros servicios y plataformas para ampliar su funcionalidad.",
+          icon: <FiLink className="text-3xl" />
+        }
+      ]
+    },
+    en: {
+      title: "Our Services",
+      sub_title: "Technology solutions designed to boost your online presence and grow your business.",
+
+      services: [
+        {
+          title: "Custom Web Development",
+          description: "Creation of customized websites adapted to the specific needs of your business.",
+          icon: <FiCode className="text-3xl" />
+        },
+        {
+          title: "Apps React/Next.js",
+          description: "Development of modern and fast applications with the latest technologies of the JavaScript ecosystem.",
+          icon: <FiCpu className="text-3xl" />
+        },
+        {
+          title: "Responsive Design",
+          description: "We guarantee that your website looks perfect on all devices, from mobile to desktop.",
+          icon: <FiSmartphone className="text-3xl" />
+        },
+        {
+          title: "SEO Optimization",
+          description: " We improve your site's visibility in search engines to attract more customers.",
+          icon: <FiSearch className="text-3xl" />
+        },
+        {
+          title: "Web Maintenance",
+          description: "Ongoing services to keep your site up to date, secure and running smoothly.",
+          icon: <FiTool className="text-3xl" />
+        },
+        {
+          title: "APIs Integration",
+          description: "We connect your website with other services and platforms to extend its functionality.",
+          icon: <FiLink className="text-3xl" />
+        }
+      ]
+    }
+  }
+
+  const services = texts[currentLanguage].services
+
+
+  /*const services = [
     {
       title: "Desarrollo Web a Medida",
       description: "Creación de sitios web personalizados adaptados a las necesidades específicas de tu negocio.",
@@ -34,7 +118,7 @@ const ServicesSection = () => {
       description: "Conectamos tu sitio web con otros servicios y plataformas para ampliar su funcionalidad.",
       icon: <FiLink className="text-3xl" />
     }
-  ];
+  ];*/
 
   return (
     <section id="servicios" className="py-20 ">
@@ -47,7 +131,7 @@ const ServicesSection = () => {
             transition={{ duration: 0.6 }}
             className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4"
           >
-            Nuestros Servicios
+            {texts[currentLanguage].title}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -56,7 +140,7 @@ const ServicesSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg text-gray-600 max-w-2xl mx-auto dark:text-gray-300"
           >
-            Soluciones tecnológicas diseñadas para impulsar tu presencia en línea y hacer crecer tu negocio.
+            {texts[currentLanguage].sub_title}
           </motion.p>
         </div>
 

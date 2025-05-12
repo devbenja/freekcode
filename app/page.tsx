@@ -1,13 +1,15 @@
 import Navbar from "@/components/NavBar";
 import Servicios from "@/components/Servicios";
 import { Hero } from "@/components/Hero"
+import Portfolio from "@/components/Portfolio";
 
 export default function Home() {
 	return (
 		<div className="">
 			<Navbar/>
 			<Hero/>	
-			<Servicios/>	
+			<Servicios/>
+			<Portfolio/>	
 		</div>
 	);
 }
