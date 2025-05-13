@@ -85,7 +85,8 @@ const ServicesSection = () => {
   
     const texts = {
         es: {
-          title: "Nuestros Servicios",
+          title1_1: "Nuestros",
+          title1_2: "Servicios",
           sub_title: "Soluciones tecnológicas diseñadas para impulsar tu presencia en línea y hacer crecer tu negocio.",
 
           services: [
@@ -95,7 +96,7 @@ const ServicesSection = () => {
               icon: <FiCode className="text-3xl" />
             },
             {
-              title: "Automatización de Procesos",
+              title: "Automatización de Procesos (RPA)",
               description: "Implementamos soluciones de RPA para automatizar tareas repetitivas y procesos empresariales mediante bots software, reduciendo costos operativos y eliminando errores humanos.",
               icon: <FiZap className="text-3xl" />
             },
@@ -122,7 +123,8 @@ const ServicesSection = () => {
           ]
         },
         en: {
-          title: "Our Services",
+          title1_1: "Our",
+          title1_2: "Services",
           sub_title: "Technology solutions designed to boost your online presence and grow your business.",
 
           services: [
@@ -132,13 +134,13 @@ const ServicesSection = () => {
               icon: <FiCode className="text-3xl" />
             },
             {
-              title: "Apps React/Next.js",
-              description: "Development of modern and fast applications with the latest technologies of the JavaScript ecosystem.",
-              icon: <FiCpu className="text-3xl" />
+              title: "Process Automation (RPA)",
+              description: "We implement RPA solutions to automate repetitive tasks and business processes through software bots, reducing operational costs and eliminating human errors.",
+              icon: <FiZap className="text-3xl" />
             },
             {
-              title: "Responsive Design",
-              description: "We guarantee that your website looks perfect on all devices, from mobile to desktop.",
+              title: "Mobile Apps",
+              description: "We develop native and cross-platform apps for iOS and Android that deliver exceptional experiences to your users and boost your presence on mobile devices.",
               icon: <FiSmartphone className="text-3xl" />
             },
             {
@@ -152,13 +154,13 @@ const ServicesSection = () => {
               icon: <FiTool className="text-3xl" />
             },
             {
-              title: "APIs Integration",
-              description: "We connect your website with other services and platforms to extend its functionality.",
-              icon: <FiBarChart2 className="text-3xl" />
+              title: "Marketing Digital",
+              description: "Implementamos estrategias integrales de marketing digital que incluyen redes sociales, email marketing, publicidad online y análisis de datos para impulsar tu crecimiento.",
+              icon: <FiLink className="text-3xl" />
             }
           ]
         }
-  
+      }
       const services = texts[currentLanguage].services
     
 
@@ -181,11 +183,9 @@ const ServicesSection = () => {
             transition={{ duration: 0.6 }}
             className={`${orbitron.className} text-3xl md:text-4xl lg:text-5xl font-bold mb-6`}
           >
-            {texts[currentLanguage].title}
-
-            Nuestros{" "}
+            {texts[currentLanguage].title1_1}{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 bg-[size:200%_200%] animate-gradient">
-              Servicios
+              {texts[currentLanguage].title1_2}
             </span>
           </motion.h2>
 
