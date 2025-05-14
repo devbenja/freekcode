@@ -1,9 +1,10 @@
 'use client'
 import type React from "react"
 import { useState } from "react"
-import { FiCode, FiSmartphone, FiSearch, FiTool, FiBarChart2, FiZap } from "react-icons/fi"
+import { FiCode, FiSmartphone, FiSearch, FiTool, FiLink, FiZap } from 'react-icons/fi';
 import { motion } from "framer-motion"
 import { Orbitron } from "next/font/google"
+import { useLanguage } from '@/context/LanguageContext';
 
 const orbitron = Orbitron({
   subsets: ["latin"],
@@ -79,47 +80,91 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
 }
 
 const ServicesSection = () => {
-    const services = [
-        {
-          title: "Desarrollo Web a la Medida",
-          description:
-            "Creamos sitios y aplicaciones web personalizadas que se adaptan perfectamente a las necesidades específicas de tu negocio, con enfoque en usabilidad, rendimiento y conversión.",
-          icon: <FiCode className="text-3xl" />,
+    const { currentLanguage } = useLanguage();
+
+    const texts = {
+        es: {
+          title1_1: "Nuestros",
+          title1_2: "Servicios",
+          sub_title: "Soluciones tecnológicas diseñadas para impulsar tu presencia en línea y hacer crecer tu negocio.",
+
+          services: [
+            {
+              title: "Desarrollo Web a Medida",
+              description: "Creación de sitios web personalizados adaptados a las necesidades específicas de tu negocio.",
+              icon: <FiCode className="text-3xl" />
+            },
+            {
+              title: "Automatización de Procesos (RPA)",
+              description: "Implementamos soluciones de RPA para automatizar tareas repetitivas y procesos empresariales mediante bots software, reduciendo costos operativos y eliminando errores humanos.",
+              icon: <FiZap className="text-3xl" />
+            },
+            {
+              title: "Aplicaciones Móviles",
+              description: "Desarrollamos aplicaciones nativas y multiplataforma para iOS y Android que ofrecen experiencias excepcionales a tus usuarios y potencian tu presencia en dispositivos móviles.",
+              icon: <FiSmartphone className="text-3xl" />
+            },
+            {
+              title: "Optimización SEO",
+              description: "Mejoramos la visibilidad de tu sitio en los motores de búsqueda para atraer más clientes.",
+              icon: <FiSearch className="text-3xl" />
+            },
+            {
+              title: "Mantenimiento Web",
+              description: "Servicios continuos para mantener tu sitio actualizado, seguro y funcionando sin problemas.",
+              icon: <FiTool className="text-3xl" />
+            },
+            {
+              title: "Marketing Digital",
+              description: "Implementamos estrategias integrales de marketing digital que incluyen redes sociales, email marketing, publicidad online y análisis de datos para impulsar tu crecimiento.",
+              icon: <FiLink className="text-3xl" />
+            }
+          ]
         },
-        {
-          title: "Automatización de Procesos (RPA)",
-          description:
-            "Implementamos soluciones de RPA para automatizar tareas repetitivas y procesos empresariales mediante bots software, reduciendo costos operativos y eliminando errores humanos.",
-          icon: <FiZap className="text-3xl" />,
-        },
-        {
-          title: "Aplicaciones Móviles",
-          description:
-            "Desarrollamos aplicaciones nativas y multiplataforma para iOS y Android que ofrecen experiencias excepcionales a tus usuarios y potencian tu presencia en dispositivos móviles.",
-          icon: <FiSmartphone className="text-3xl" />,
-        },
-        {
-          title: "Optimización SEO",
-          description:
-            "Mejoramos la visibilidad de tu sitio en los motores de búsqueda mediante estrategias avanzadas de SEO que aumentan el tráfico orgánico y atraen clientes potenciales.",
-          icon: <FiSearch className="text-3xl" />,
-        },
-        {
-          title: "Mantenimiento Web",
-          description:
-            "Ofrecemos servicios continuos para mantener tu sitio actualizado, seguro y funcionando sin problemas, con soporte técnico permanente y actualizaciones periódicas.",
-          icon: <FiTool className="text-3xl" />,
-        },
-        {
-          title: "Marketing Digital",
-          description:
-            "Implementamos estrategias integrales de marketing digital que incluyen redes sociales, email marketing, publicidad online y análisis de datos para impulsar tu crecimiento.",
-          icon: <FiBarChart2 className="text-3xl" />,
-        },
-      ]
+        en: {
+          title1_1: "Our",
+          title1_2: "Services",
+          sub_title: "Technology solutions designed to boost your online presence and grow your business.",
+
+          services: [
+            {
+              title: "Custom Web Development",
+              description: "Creation of customized websites adapted to the specific needs of your business.",
+              icon: <FiCode className="text-3xl" />
+            },
+            {
+              title: "Process Automation (RPA)",
+              description: "We implement RPA solutions to automate repetitive tasks and business processes through software bots, reducing operational costs and eliminating human errors.",
+              icon: <FiZap className="text-3xl" />
+            },
+            {
+              title: "Mobile Apps",
+              description: "We develop native and cross-platform apps for iOS and Android that deliver exceptional experiences to your users and boost your presence on mobile devices.",
+              icon: <FiSmartphone className="text-3xl" />
+            },
+            {
+              title: "SEO Optimization",
+              description: " We improve your site's visibility in search engines to attract more customers.",
+              icon: <FiSearch className="text-3xl" />
+            },
+            {
+              title: "Web Maintenance",
+              description: "Ongoing services to keep your site up to date, secure and running smoothly.",
+              icon: <FiTool className="text-3xl" />
+            },
+            {
+              title: "Marketing Digital",
+              description: "Implementamos estrategias integrales de marketing digital que incluyen redes sociales, email marketing, publicidad online y análisis de datos para impulsar tu crecimiento.",
+              icon: <FiLink className="text-3xl" />
+            }
+          ]
+        }
+      }
+
+const services = texts[currentLanguage].services
 
   return (
-    <section id="servicios" className="py-24 relative overflow-hidden px-10">
+    <section id="servicios" className="py-24 relative overflow-hidden px-0 md:px-14">
       {/* Elementos decorativos de fondo */}
       <div className="absolute inset-0 bg-[size:40px_40px] bg-[image:linear-gradient(to_right,rgba(0,0,0,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.05)_1px,transparent_1px)] opacity-[0.15] z-0"></div>
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
@@ -137,9 +182,9 @@ const ServicesSection = () => {
             transition={{ duration: 0.6 }}
             className={`${orbitron.className} text-3xl md:text-4xl lg:text-5xl font-bold mb-6`}
           >
-            Nuestros{" "}
+            {texts[currentLanguage].title1_1}{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 bg-[size:200%_200%] animate-gradient">
-              Servicios
+              {texts[currentLanguage].title1_2}
             </span>
           </motion.h2>
 
@@ -150,8 +195,7 @@ const ServicesSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg text-gray-800 dark:text-gray-400 max-w-3xl mx-auto"
           >
-            Diseñadas para impulsar tu presencia en línea, mejorar la experiencia de tus usuarios y hacer crecer tu
-            negocio en el mundo digital.
+            {texts[currentLanguage].sub_title}
           </motion.p>
         </div>
 
