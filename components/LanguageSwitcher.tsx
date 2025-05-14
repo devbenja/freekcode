@@ -24,7 +24,7 @@ export const LanguageSwitcher = () => {
       {showDropdown && (
         <div className="absolute right-0 mt-2 w-24 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 z-50">
           <div className="py-1" role="menu" aria-orientation="vertical">
-            <Button
+            <button
               onClick={() => changeLanguage("es")}
               className={`${
                 currentLanguage === 'es' ? 'bg-gray-100 dark:bg-gray-700' : ''
@@ -32,8 +32,8 @@ export const LanguageSwitcher = () => {
               role="menuitem"
             >
               Español
-            </Button>
-            <Button
+            </button>
+            <button
               onClick={() => changeLanguage("en")}
               className={`${
                 currentLanguage === 'en' ? 'bg-gray-100 dark:bg-gray-700' : ''
@@ -41,7 +41,7 @@ export const LanguageSwitcher = () => {
               role="menuitem"
             >
               English
-            </Button>
+            </button>
           </div>
         </div>
       )}

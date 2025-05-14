@@ -35,14 +35,18 @@ export const Hero = () => {
       title1: "Desarrollo de Software Innovador",
       title2_1: "Impulsamos",
       title2_2: "tu Negocio con Software",
-      title2_3: "a la Medida"
+      title2_3: "a la Medida",
+      b_schedule: "Agenda una consulta gratuita",
+      b_services: "Conoce nuestros servicios"
       
     },
     en: {
       title1: "Innovative Software Development",
       title2_1: "We boost",
       title2_2: "your Business with",
-      title2_3: "Custom Sofware"
+      title2_3: "Custom Software",
+      b_schedule: "Schedule a free meeting",
+      b_services: "Learn about our services"
     }
   }
 
