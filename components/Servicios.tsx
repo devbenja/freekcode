@@ -154,7 +154,7 @@ const ServicesSection = () => {
             },
             {
               title: "Marketing Digital",
-              description: "Implementamos estrategias integrales de marketing digital que incluyen redes sociales, email marketing, publicidad online y análisis de datos para impulsar tu crecimiento.",
+              description: "We implement comprehensive digital marketing strategies that include social media, email marketing, online advertising and data analysis to drive your growth.",
               icon: <FiLink className="text-3xl" />
             }
           ]
