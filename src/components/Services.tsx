@@ -210,7 +210,7 @@ export function Services() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.3 }}
             style={{ y: isMobile ? 0 : y2 }}
-            className="col-span-12 lg:col-span-7 row-span-2 group relative"
+            className="col-span-12 lg:col-span-7 lg:col-start-1 row-span-2 group relative"
           >
             <div className={`absolute -inset-1 bg-gradient-to-br ${services[4].gradient} rounded-3xl blur-2xl opacity-20 group-hover:opacity-40 transition-opacity`} />
             <div className="relative h-full min-h-[500px] p-10 bg-gradient-to-br from-neutral-900/90 to-neutral-900/50 border-2 border-neutral-800/50 rounded-3xl backdrop-blur-sm overflow-hidden group-hover:border-transparent transition-all">
@@ -255,7 +255,7 @@ export function Services() {
             initial={{ opacity: 0, y: 50 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.4 }}
-            className="col-span-12 lg:col-span-5 group relative"
+            className="col-span-12 lg:col-span-5 lg:col-start-8 group relative"
           >
             <div className={`absolute -inset-1 bg-gradient-to-br ${services[3].gradient} rounded-3xl blur-2xl opacity-20 group-hover:opacity-40 transition-opacity`} />
             <div className="relative h-full min-h-[240px] p-8 bg-gradient-to-br from-neutral-900/90 to-neutral-900/50 border-2 border-neutral-800/50 rounded-3xl backdrop-blur-sm overflow-hidden group-hover:border-transparent transition-all">
@@ -287,7 +287,7 @@ export function Services() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.7, delay: 0.5 }}
-            className="col-span-12 lg:col-span-5 group relative"
+            className="col-span-12 lg:col-span-5 lg:col-start-8 group relative"
           >
             <div className={`absolute -inset-1 bg-gradient-to-br ${services[5].gradient} rounded-2xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity`} />
             <div className="relative h-full min-h-[200px] p-8 bg-neutral-900/50 border border-neutral-800/50 rounded-2xl backdrop-blur-sm group-hover:border-transparent transition-all overflow-hidden">

@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from 'motion/react';
 import { ArrowRight, Zap, Sparkles, Code2, Rocket, TrendingUp, Play } from 'lucide-react';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 
 export function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -23,6 +23,16 @@ export function Hero() {
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
+
+  const floatingCodeSnippets = useMemo(() =>
+    ['</>','{}','[]','()','fn()','const'].map((symbol, i) => ({
+      symbol,
+      x: Math.random() * 1920,
+      y: Math.random() * 1080,
+      delay: i * 0.5,
+      duration: 5 + Math.random() * 3,
+    })),
+  []);
 
   const scrollToContact = () => {
     const element = document.getElementById('contacto');
@@ -65,13 +75,13 @@ export function Hero() {
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)] opacity-20" />
 
       {/* Floating code snippets */}
-      {[...Array(6)].map((_, i) => (
+      {floatingCodeSnippets.map((snippet, i) => (
         <motion.div
           key={i}
           className="absolute text-cyan-400/10 font-mono text-sm"
           initial={{
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
+            x: snippet.x,
+            y: snippet.y,
           }}
           animate={{
             y: [0, -30, 0],
@@ -79,12 +89,12 @@ export function Hero() {
             rotate: [0, 5, 0],
           }}
           transition={{
-            duration: 5 + Math.random() * 3,
+            duration: snippet.duration,
             repeat: Infinity,
-            delay: i * 0.5,
+            delay: snippet.delay,
           }}
         >
-          {['</>','{}','[]','()','fn()','const'][i]}
+          {snippet.symbol}
         </motion.div>
       ))}
 

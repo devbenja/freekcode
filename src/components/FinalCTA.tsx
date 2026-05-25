@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
 import { ArrowRight, Mail, Calendar, MessageSquare, Sparkles, Rocket, Zap } from 'lucide-react';
 import { useInView } from '../hooks/useInView';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 
 const contactMethods = [
   {
@@ -43,6 +43,15 @@ export function FinalCTA() {
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
+  const particles = useMemo(() =>
+    Array.from({ length: 20 }, () => ({
+      x: Math.random() * 1920,
+      y: Math.random() * 1080,
+      duration: Math.random() * 5 + 3,
+      delay: Math.random() * 5,
+    })),
+  []);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
@@ -62,22 +71,22 @@ export function FinalCTA() {
       </div>
 
       {/* Floating particles */}
-      {[...Array(20)].map((_, i) => (
+      {particles.map((p, i) => (
         <motion.div
           key={i}
           className="absolute w-2 h-2 bg-cyan-400/30 rounded-full"
           initial={{
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
+            x: p.x,
+            y: p.y,
           }}
           animate={{
             y: [0, -50, 0],
             opacity: [0, 1, 0],
           }}
           transition={{
-            duration: Math.random() * 5 + 3,
+            duration: p.duration,
             repeat: Infinity,
-            delay: Math.random() * 5,
+            delay: p.delay,
           }}
         />
       ))}
