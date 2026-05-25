@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from 'motion/react';
 import { Code2, Smartphone, Workflow, TrendingUp, Cloud, Shield } from 'lucide-react';
-import { useInView } from '../hooks/useInView';
+import { useEffect, useRef, useState } from 'react';
 
 const services = [
   {
@@ -54,10 +54,25 @@ const services = [
 ];
 
 export function Services() {
-  const { ref, isInView } = useInView();
+  const sectionRef = useRef<HTMLElement>(null);
+  const [isInView, setIsInView] = useState(false);
 
-  // Use global scroll — no target needed, eliminates the non-static position warning
-  const { scrollYProgress } = useScroll();
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setIsInView(true);
+      },
+      { threshold: 0.1 }
+    );
+    const el = sectionRef.current;
+    if (el) observer.observe(el);
+    return () => { if (el) observer.unobserve(el); };
+  }, []);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start'],
+  });
   const y1 = useTransform(scrollYProgress, [0, 1], [60, -60]);
   const y2 = useTransform(scrollYProgress, [0, 1], [-60, 60]);
 
@@ -67,7 +82,7 @@ export function Services() {
     <section
       id="servicios"
       className="py-32 lg:py-40 bg-neutral-950 relative overflow-hidden"
-      ref={ref}
+      ref={sectionRef}
     >
       <div className="absolute inset-0">
         <div className="absolute top-1/4 right-1/3 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[150px]" />
@@ -109,7 +124,7 @@ export function Services() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7 }}
             style={{ y: isMobile ? 0 : y1 }}
-            className="col-span-12 lg:col-span-7 row-span-2 group relative"
+            className="col-span-12 lg:col-span-7 lg:col-start-1 lg:row-start-1 row-span-2 group relative"
           >
             <div className={`absolute -inset-1 bg-gradient-to-br ${services[0].gradient} rounded-3xl blur-2xl opacity-20 group-hover:opacity-40 transition-opacity`} />
             <div className="relative h-full min-h-[500px] p-10 bg-gradient-to-br from-neutral-900/90 to-neutral-900/50 border-2 border-neutral-800/50 rounded-3xl backdrop-blur-sm overflow-hidden group-hover:border-transparent transition-all">
@@ -156,7 +171,7 @@ export function Services() {
             initial={{ opacity: 0, y: -50 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="col-span-12 lg:col-span-5 group relative"
+            className="col-span-12 lg:col-span-5 lg:col-start-8 lg:row-start-1 group relative"
           >
             <div className={`absolute -inset-1 bg-gradient-to-br ${services[1].gradient} rounded-3xl blur-2xl opacity-20 group-hover:opacity-40 transition-opacity`} />
             <div className="relative h-full min-h-[240px] p-8 bg-gradient-to-br from-neutral-900/90 to-neutral-900/50 border-2 border-neutral-800/50 rounded-3xl backdrop-blur-sm overflow-hidden group-hover:border-transparent transition-all">
@@ -188,7 +203,7 @@ export function Services() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="col-span-12 lg:col-span-5 group relative"
+            className="col-span-12 lg:col-span-5 lg:col-start-8 lg:row-start-2 group relative"
           >
             <div className={`absolute -inset-1 bg-gradient-to-br ${services[2].gradient} rounded-2xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity`} />
             <div className="relative h-full min-h-[200px] p-8 bg-neutral-900/50 border border-neutral-800/50 rounded-2xl backdrop-blur-sm group-hover:border-transparent transition-all overflow-hidden">
@@ -210,7 +225,7 @@ export function Services() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.3 }}
             style={{ y: isMobile ? 0 : y2 }}
-            className="col-span-12 lg:col-span-7 lg:col-start-1 row-span-2 group relative"
+            className="col-span-12 lg:col-span-7 lg:col-start-1 lg:row-start-3 row-span-2 group relative"
           >
             <div className={`absolute -inset-1 bg-gradient-to-br ${services[4].gradient} rounded-3xl blur-2xl opacity-20 group-hover:opacity-40 transition-opacity`} />
             <div className="relative h-full min-h-[500px] p-10 bg-gradient-to-br from-neutral-900/90 to-neutral-900/50 border-2 border-neutral-800/50 rounded-3xl backdrop-blur-sm overflow-hidden group-hover:border-transparent transition-all">
@@ -255,7 +270,7 @@ export function Services() {
             initial={{ opacity: 0, y: 50 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.4 }}
-            className="col-span-12 lg:col-span-5 lg:col-start-8 group relative"
+            className="col-span-12 lg:col-span-5 lg:col-start-8 lg:row-start-3 group relative"
           >
             <div className={`absolute -inset-1 bg-gradient-to-br ${services[3].gradient} rounded-3xl blur-2xl opacity-20 group-hover:opacity-40 transition-opacity`} />
             <div className="relative h-full min-h-[240px] p-8 bg-gradient-to-br from-neutral-900/90 to-neutral-900/50 border-2 border-neutral-800/50 rounded-3xl backdrop-blur-sm overflow-hidden group-hover:border-transparent transition-all">
@@ -287,7 +302,7 @@ export function Services() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.7, delay: 0.5 }}
-            className="col-span-12 lg:col-span-5 lg:col-start-8 group relative"
+            className="col-span-12 lg:col-span-5 lg:col-start-8 lg:row-start-4 group relative"
           >
             <div className={`absolute -inset-1 bg-gradient-to-br ${services[5].gradient} rounded-2xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity`} />
             <div className="relative h-full min-h-[200px] p-8 bg-neutral-900/50 border border-neutral-800/50 rounded-2xl backdrop-blur-sm group-hover:border-transparent transition-all overflow-hidden">
